@@ -11,7 +11,7 @@
       spacing="10" alignment="CENTER">
 
     <Button text="Manage Users" onAction="#goToUserManagement"/>
-
+    <Button text="Manage Fleet" onAction="#openFleetManagement"/>
 
     <TableView fx:id="rideTable">
         <columns>

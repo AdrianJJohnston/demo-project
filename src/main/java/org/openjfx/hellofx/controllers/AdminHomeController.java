@@ -38,16 +38,17 @@ public class AdminHomeController {
 
     private ObservableList<RideSchedule> rideList = FXCollections.observableArrayList();
 
-  //  @FXML
-    //private void handleManageUsers() {
-    //    SceneManager.openUserManagement();
-    //}
   @FXML
   private void goToUserManagement() {
       System.out.println("Navigating to User Management now...");
       SceneManager.switchScene("UserManagement.fxml", "User Management");
   }
 
+    @FXML
+    private void openFleetManagement() {
+        System.out.println("Navigating to Fleet Management now...");
+        SceneManager.switchToFleetManagement();
+    }
 
 
     @FXML

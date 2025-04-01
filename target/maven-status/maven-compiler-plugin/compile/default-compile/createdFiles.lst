@@ -4,6 +4,7 @@ org/openjfx/hellofx/models/DatabaseUtil.class
 org/openjfx/hellofx/App.class
 org/openjfx/hellofx/models/Schedule.class
 org/openjfx/hellofx/models/RideSchedule.class
+org/openjfx/hellofx/controllers/FleetManagementController.class
 org/openjfx/hellofx/models/Vehicle.class
 org/openjfx/hellofx/models/Ride.class
 org/openjfx/hellofx/PrimaryController.class
