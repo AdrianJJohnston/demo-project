@@ -10,25 +10,45 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController {
-    @FXML private TextField usernameField;
+    @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
     @FXML private Label errorLabel;
 
     public void handleLogin() {
-        String username = usernameField.getText();
+        String email = emailField.getText();
         String password = passwordField.getText();
-
+    
+        if (email.isBlank() || password.isBlank()) {
+            errorLabel.setText("Email and password cannot be empty.");
+            return;
+        }
+    
         EntityManager em = DatabaseUtil.getEntityManager();
         TypedQuery<User> query = em.createQuery(
-                "SELECT u FROM User u WHERE u.username = :username AND u.password = :password", User.class);
-        query.setParameter("username", username);
+                "SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class);
+        query.setParameter("email", email);
         query.setParameter("password", password);
-        
+    
         if (!query.getResultList().isEmpty()) {
-            SceneManager.switchScene("home.fxml", "Home");
+            User user = query.getSingleResult();
+            String role = user.getRole();
+    
+            switch (role.toLowerCase()) {
+                case "admin":
+                    SceneManager.switchScene("AdminHome.fxml", "Admin Home");
+                    break;
+                case "driver":
+                    SceneManager.switchScene("DriverHome.fxml", "Driver Home");
+                    break;
+                case "customer":
+                default:
+                    SceneManager.switchScene("home.fxml", "Home");
+                    break;
+            }
         } else {
-            errorLabel.setText("Invalid credentials");
+            errorLabel.setText("Invalid email or password.");
         }
+    
         em.close();
     }
 

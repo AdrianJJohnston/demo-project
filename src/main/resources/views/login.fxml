@@ -9,13 +9,13 @@
 <GridPane fx:controller="org.openjfx.hellofx.controllers.LoginController"
           xmlns="http://javafx.com/javafx/21"
           xmlns:fx="http://javafx.com/fxml/1"
-          hgap="10" vgap="10">
+          hgap="10" vgap="10" alignment="center">
 
-    <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-    <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <Label text="Email:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="emailField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-    <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
     <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
     <Button text="Login" onAction="#handleLogin" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
     <Button text="Register" onAction="#goToRegister" GridPane.rowIndex="2" GridPane.columnIndex="1"/>

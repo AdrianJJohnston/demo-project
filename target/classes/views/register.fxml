@@ -9,15 +9,24 @@
 <GridPane fx:controller="org.openjfx.hellofx.controllers.RegisterController"
           xmlns="http://javafx.com/javafx/21"
           xmlns:fx="http://javafx.com/fxml/1"
-          hgap="10" vgap="10">
+          hgap="10" vgap="10" alignment="center">
 
-    <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-    <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Label text="First Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="firstNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-    <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-    <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <Label text="Last Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="lastNameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-    <Button text="Register" onAction="#handleRegister" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-    <Button text="Back to Login" onAction="#goToLogin" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="emailField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Label text="Phone Number:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <TextField fx:id="phoneNumberField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+    <Label text="Password:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <PasswordField fx:id="passwordField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+    <Button text="Register" onAction="#handleRegister" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+    <Button text="Back to Login" onAction="#goToLogin" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
 </GridPane>
