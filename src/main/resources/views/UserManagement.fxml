@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.openjfx.hellofx.controllers.UserManagementController"
+      spacing="10" alignment="CENTER">
+
+    <Label text="User Management"/>
+
+    <TableView fx:id="userTable">
+        <columns>
+            <TableColumn text="ID" fx:id="colUserID"/>
+            <TableColumn text="First Name" fx:id="colFirstName"/>
+            <TableColumn text="Last Name" fx:id="colLastName"/>
+            <TableColumn text="Email" fx:id="colEmail"/>
+            <TableColumn text="Phone Number" fx:id="colPhoneNumber"/>
+            <TableColumn text="Role" fx:id="colRole"/>
+        </columns>
+    </TableView>
+
+    <TextField fx:id="firstNameField" promptText="First Name"/>
+    <TextField fx:id="lastNameField" promptText="Last Name"/>
+    <TextField fx:id="emailField" promptText="Email"/>
+    <PasswordField fx:id="passwordField" promptText="Password"/>
+    <TextField fx:id="phoneNumberField" promptText="Phone Number"/>
+
+    <ComboBox fx:id="roleComboBox">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Customer"/>
+                <String fx:value="Driver"/>
+                <String fx:value="Admin"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Button fx:id="addUserButton" text="Add User" onAction="#handleAddUser"/>
+    <Button fx:id="deleteUserButton" text="Delete User" onAction="#handleDeleteUser"/>
+
+</VBox>

@@ -4,10 +4,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Button?>
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.openjfx.hellofx.controllers.AdminHomeController"
       spacing="10" alignment="CENTER">
+
+    <Button text="Manage Users" onAction="#goToUserManagement"/>
+
 
     <TableView fx:id="rideTable">
         <columns>

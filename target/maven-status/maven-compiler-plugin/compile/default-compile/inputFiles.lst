@@ -1,5 +1,6 @@
 /Users/arzoobali/demo-project/src/main/java/org/openjfx/hellofx/App.java
 /Users/arzoobali/demo-project/src/main/java/org/openjfx/hellofx/controllers/DriverHomeController.java
+/Users/arzoobali/demo-project/src/main/java/org/openjfx/hellofx/controllers/UserManagementController.java
 /Users/arzoobali/demo-project/src/main/java/org/openjfx/hellofx/controllers/LoginController.java
 /Users/arzoobali/demo-project/src/main/java/org/openjfx/hellofx/models/RideSchedule.java
 /Users/arzoobali/demo-project/src/main/java/org/openjfx/hellofx/models/Vehicle.java
