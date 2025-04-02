@@ -2,7 +2,9 @@ package org.openjfx.hellofx.controllers;
 
 import org.openjfx.hellofx.models.DatabaseUtil;
 import org.openjfx.hellofx.models.User;
+import org.mindrot.jbcrypt.BCrypt;  // Import BCrypt
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,41 +17,47 @@ public class LoginController {
     @FXML private Label errorLabel;
 
     public void handleLogin() {
-        String email = emailField.getText();
-        String password = passwordField.getText();
-    
+        String email = emailField.getText().trim();
+        String password = passwordField.getText().trim();
+
         if (email.isBlank() || password.isBlank()) {
             errorLabel.setText("Email and password cannot be empty.");
             return;
         }
-    
+
         EntityManager em = DatabaseUtil.getEntityManager();
-        TypedQuery<User> query = em.createQuery(
-                "SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class);
-        query.setParameter("email", email);
-        query.setParameter("password", password);
-    
-        if (!query.getResultList().isEmpty()) {
+        try {
+            // Fetch the user by email
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class);
+            query.setParameter("email", email);
             User user = query.getSingleResult();
-            String role = user.getRole();
-    
-            switch (role.toLowerCase()) {
-                case "admin":
-                    SceneManager.switchScene("AdminHome.fxml", "Admin Home");
-                    break;
-                case "driver":
-                    SceneManager.switchScene("DriverHome.fxml", "Driver Home");
-                    break;
-                case "customer":
-                default:
-                    SceneManager.switchScene("home.fxml", "Home");
-                    break;
+
+            // Compare entered password with the hashed password stored in the database
+            if (BCrypt.checkpw(password, user.getPasswordHash())) {
+                // Password is correct, proceed with login
+                String role = user.getRole();
+                switch (role.toLowerCase()) {
+                    case "admin":
+                        SceneManager.switchScene("AdminHome.fxml", "Admin Home");
+                        break;
+                    case "driver":
+                        SceneManager.switchScene("DriverHome.fxml", "Driver Home");
+                        break;
+                    case "customer":
+                    default:
+                        SceneManager.switchScene("home.fxml", "Home");
+                        break;
+                }
+            } else {
+                // Password doesn't match
+                errorLabel.setText("Invalid email or password.");
             }
-        } else {
+        } catch (NoResultException e) {
+            // No user found with that email
             errorLabel.setText("Invalid email or password.");
+        } finally {
+            em.close();
         }
-    
-        em.close();
     }
 
     public void goToRegister() {

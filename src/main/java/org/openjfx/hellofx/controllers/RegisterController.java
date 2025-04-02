@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class RegisterController {
     @FXML private TextField firstNameField;
@@ -68,6 +69,9 @@ public class RegisterController {
                 showAlert("Registration Error", "Email or phone number already in use.");
                 return;
             }
+
+            // Hash password before saving
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
 
             // Create and persist the user
             User user = new User(firstName, lastName, email, password, phone);

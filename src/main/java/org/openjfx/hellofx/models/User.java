@@ -1,6 +1,7 @@
 package org.openjfx.hellofx.models;
 
 import jakarta.persistence.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
 @Table(name = "users")
@@ -27,11 +28,11 @@ public class User {
         this.role = "Customer"; // default role
     }
 
-    public User(String firstName, String lastName, String email, String passwordHash, String phoneNumber) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = passwordHash;
+        this.setPasswordHash(password); // Ensure password is hashed
         this.phoneNumber = phoneNumber;
         this.role = "Customer";
     }
@@ -50,7 +51,14 @@ public class User {
     public void setEmail(String email) { this.email = email; }
 
     public String getPasswordHash() { return password; }
-    public void setPasswordHash(String password) { this.password = password; }
+    
+    public void setPasswordHash(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt(12));
+    }
+
+    public boolean checkPassword(String plainPassword) {
+        return BCrypt.checkpw(plainPassword, this.password);
+    }
 
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }

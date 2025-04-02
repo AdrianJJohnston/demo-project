@@ -4,6 +4,7 @@ import org.h2.tools.Server;
 import org.openjfx.hellofx.controllers.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class App extends Application {
 
@@ -27,7 +28,6 @@ public class App extends Application {
             // Start the H2 server (if needed)
             Server h2Server = Server.createTcpServer("-tcpAllowOthers", "-tcpDaemon").start();
             System.out.println("H2 server started at: " + h2Server.getURL());
-            
             // Launch the JavaFX application
             launch(args);
         } catch (Exception e) {
