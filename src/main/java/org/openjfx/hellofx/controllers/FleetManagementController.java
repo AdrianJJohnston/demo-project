@@ -39,6 +39,12 @@ public class FleetManagementController {
     @FXML
     private Button deleteVehicleButton;
 
+    @FXML
+    private void handleBack() {
+        SceneManager.loadAdminHome();
+    }
+
+
     private ObservableList<Vehicle> vehicleList = FXCollections.observableArrayList();
 
     @FXML

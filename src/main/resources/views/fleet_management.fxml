@@ -31,6 +31,7 @@
             <Button fx:id="addVehicleButton" text="Add Vehicle"/>
             <Button fx:id="deleteVehicleButton" text="Delete Vehicle"/>
         </HBox>
+        <Button text="Back to Admin Home" onAction="#handleBack" style="-fx-background-color: #FF5733; -fx-text-fill: white;"/>
 
     </VBox>
 

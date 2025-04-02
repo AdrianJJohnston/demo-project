@@ -50,6 +50,11 @@ public class AdminHomeController {
         SceneManager.switchToFleetManagement();
     }
 
+    @FXML
+    private void handleReportPage() {
+        SceneManager.loadReportPage();
+    }
+
 
     @FXML
     public void initialize() {

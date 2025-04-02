@@ -31,4 +31,13 @@ public class SceneManager {
     public static void switchToFleetManagement() {
         switchScene("fleet_management.fxml", "Fleet Management");
     }
+    //method for switching to report page
+    public static void loadReportPage() {
+        switchScene("ReportView.fxml", "Generate Reports");
+    }
+    public static void loadAdminHome() {
+        switchScene("AdminHome.fxml", "Admin Dashboard");
+    }
+
+
 }

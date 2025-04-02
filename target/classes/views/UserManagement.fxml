@@ -42,4 +42,7 @@
     <Button fx:id="addUserButton" text="Add User" onAction="#handleAddUser"/>
     <Button fx:id="deleteUserButton" text="Delete User" onAction="#handleDeleteUser"/>
 
+    <Button text="Back to Admin Home" onAction="#handleBack" style="-fx-background-color: #FF5733; -fx-text-fill: white;"/>
+
+
 </VBox>

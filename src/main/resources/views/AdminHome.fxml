@@ -12,6 +12,7 @@
 
     <Button text="Manage Users" onAction="#goToUserManagement"/>
     <Button text="Manage Fleet" onAction="#openFleetManagement"/>
+    <Button text="Generate Reports" onAction="#handleReportPage"/>
 
     <TableView fx:id="rideTable">
         <columns>

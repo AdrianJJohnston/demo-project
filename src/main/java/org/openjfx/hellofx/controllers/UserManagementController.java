@@ -57,6 +57,12 @@ public class UserManagementController {
     }
 
     @FXML
+    private void handleBack() {
+        SceneManager.loadAdminHome();
+    }
+
+
+    @FXML
     public void initialize() {
         try {
             System.out.println("Initializing UserManagementController...");
