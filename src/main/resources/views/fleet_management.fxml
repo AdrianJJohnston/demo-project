@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.hellofx.controllers.FleetManagementController">
+
+    <VBox spacing="10" prefWidth="600" prefHeight="400">
+
+        <!-- TableView to Display Vehicles -->
+        <TableView fx:id="vehicleTable">
+            <columns>
+                <TableColumn fx:id="colVehicleID" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colModel" text="Model" prefWidth="120"/>
+                <TableColumn fx:id="colPlateNumber" text="Plate Number" prefWidth="120"/>
+                <TableColumn fx:id="colCapacity" text="Capacity" prefWidth="80"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Input Fields for Adding Vehicles -->
+        <HBox spacing="10">
+            <TextField fx:id="modelField" promptText="Model"/>
+            <TextField fx:id="plateNumberField" promptText="Plate Number"/>
+            <TextField fx:id="capacityField" promptText="Capacity"/>
+            <ComboBox fx:id="statusComboBox"/>
+        </HBox>
+
+        <!-- Buttons to Add & Delete Vehicles -->
+        <HBox spacing="10">
+            <Button fx:id="addVehicleButton" text="Add Vehicle"/>
+            <Button fx:id="deleteVehicleButton" text="Delete Vehicle"/>
+        </HBox>
+        <Button text="Back to Admin Home" onAction="#handleBack" style="-fx-background-color: #FF5733; -fx-text-fill: white;"/>
+
+    </VBox>
+
+</AnchorPane>

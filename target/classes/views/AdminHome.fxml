@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 
+<?import javafx.scene.control.Button?>
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.openjfx.hellofx.controllers.AdminHomeController"
       spacing="10" alignment="CENTER">
-    <Label fx:id="welcomeLabel" text="Test Label" />
+
+    <Button text="Manage Users" onAction="#goToUserManagement"/>
+    <Button text="Manage Fleet" onAction="#openFleetManagement"/>
+    <Button text="Generate Reports" onAction="#handleReportPage"/>
+
+    <TableView fx:id="rideTable">
+        <columns>
+            <TableColumn fx:id="rideIdColumn" text="Ride ID"/>
+            <TableColumn fx:id="pickupColumn" text="Pickup Location"/>
+            <TableColumn fx:id="dropoffColumn" text="Dropoff Location"/>
+            <TableColumn fx:id="pickupTimeColumn" text="Pickup Time"/>
+            <TableColumn fx:id="dropoffTimeColumn" text="Dropoff Time"/>
+            <TableColumn fx:id="statusColumn" text="Status"/>
+        </columns>
+    </TableView>
+
 </VBox>
