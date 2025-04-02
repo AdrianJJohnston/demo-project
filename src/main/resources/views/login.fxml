@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane fx:controller="org.openjfx.hellofx.controllers.LoginController"
             xmlns="http://javafx.com/javafx/21"
@@ -42,4 +43,16 @@
             </GridPane>
         </HBox>
     </VBox>
+
+    <!--TOP LEFT CORNER SYLING-->
+    <!-- Large Dark Orange Triangle (background) -->
+    <Pane styleClass="triangle-large-top-left" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
+    <!-- Smaller Lighter Orange Triangle (foreground, placed on top) -->
+    <Pane styleClass="triangle-small-top-left" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
+
+    <!--BOTTOM RIGHT CORNER STYLING-->
+    <!-- Large Dark Orange Triangle (background) -->
+    <Pane styleClass="triangle-large" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0"/>
+    <!-- Smaller Lighter Orange Triangle (foreground, placed on top) -->
+    <Pane styleClass="triangle-small" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0"/>
 </AnchorPane>

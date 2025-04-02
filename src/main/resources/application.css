@@ -56,3 +56,33 @@
 .nav-link:hover {
     -fx-text-fill: #ffcc00;
 }
+
+.triangle-large {
+    -fx-background-color: #D35400; /* Dark Orange */
+    -fx-shape: "M 300 300 L 0 300 L 300 0 Z"; /* Right angle in bottom-right */
+    -fx-min-width: 300px;
+    -fx-min-height: 300px;
+}
+
+.triangle-small {
+    -fx-background-color: #E67E22; /* Lighter Orange */
+    -fx-shape: "M 150 150 L 0 150 L 150 0 Z"; /* Smaller right angle in bottom-right */
+    -fx-min-width: 150px;
+    -fx-min-height: 150px;
+}
+
+/* Top-left large triangle (flipped) */
+.triangle-large-top-left {
+    -fx-background-color: #D35400; /* Dark Orange */
+    -fx-shape: "M 0 0 L 300 0 L 0 300 Z"; /* Right angle in top-left */
+    -fx-min-width: 300px;
+    -fx-min-height: 300px;
+}
+
+/* Top-left small triangle (flipped) */
+.triangle-small-top-left {
+    -fx-background-color: #E67E22; /* Lighter Orange */
+    -fx-shape: "M 0 0 L 150 0 L 0 150 Z"; /* Smaller right angle in top-left */
+    -fx-min-width: 150px;
+    -fx-min-height: 150px;
+}
