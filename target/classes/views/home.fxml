@@ -25,10 +25,13 @@
             <Label fx:id="profileLink" text="Profile" styleClass="nav-link"/>
         </HBox>
     </HBox>
+
+
     <!-- Main Content Area -->
     <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="50" 
           AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
         <!-- White Content Box -->
+        
         <VBox styleClass="content-box" spacing="20" alignment="CENTER">
             <Label fx:id="welcomeLabel" text="Welcome to the Customer Home Page!" />
         </VBox>
