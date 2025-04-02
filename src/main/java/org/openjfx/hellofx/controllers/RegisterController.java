@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class RegisterController {
     @FXML private TextField firstNameField;
@@ -15,6 +17,16 @@ public class RegisterController {
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
     @FXML private TextField phoneNumberField;
+
+    @FXML
+    public void initialize() {
+        // Restrict phone number field to only accept numbers
+        phoneNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                phoneNumberField.setText(oldValue); // Revert change if non-digit entered
+            }
+        });
+    }
 
     public void handleRegister() {
         EntityManager em = DatabaseUtil.getEntityManager();
@@ -36,6 +48,18 @@ public class RegisterController {
             // Validate required fields
             if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
                 showAlert("Registration Error", "All fields must be filled.");
+                return;
+            }
+
+                // Validate email format
+            if (!isValidEmail(email)) {
+                showAlert("Registration Error", "Invalid email format. Use example@ex.com.");
+                return;
+            }
+
+            // Validate phone format
+            if (!isValidPhone(phone)) {
+                showAlert("Registration Error", "Phone number must be exactly 10 digits.");
                 return;
             }
 
@@ -84,4 +108,21 @@ public class RegisterController {
     public void goToLogin() {
         SceneManager.switchScene("login.fxml", "Login");
     }
+
+        /**
+     * Validate email format using regex.
+     */
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        return email.matches(emailRegex);
+    }
+
+    /**
+     * Validate phone number format (must be exactly 10 digits).
+     */
+    private boolean isValidPhone(String phone) {
+        String phoneRegex = "\\d{10}"; // Only digits, exactly 10 characters
+        return phone.matches(phoneRegex);
+    }
 }
+
