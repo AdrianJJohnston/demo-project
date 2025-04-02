@@ -81,6 +81,32 @@
                     <mainClass>org.openjfx.hellofx.App</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>org.h2.tools.Server</mainClass>
+                    <arguments>
+                        <argument>-tcp</argument>
+                        <argument>-tcpAllowOthers</argument>
+                        <argument>-tcpPort</argument>
+                        <argument>9092</argument>
+                        <argument>-web</argument>
+                        <argument>-webAllowOthers</argument>
+                        <argument>-webPort</argument>
+                        <argument>8082</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
+

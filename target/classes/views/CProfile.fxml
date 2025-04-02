@@ -9,7 +9,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.openjfx.hellofx.controllers.HomeController"
+            fx:controller="org.openjfx.hellofx.controllers.CProfileController"
             stylesheets="@../application.css">
 
     <!-- Include Navigation Bar for Customer -->
@@ -30,7 +30,7 @@
           AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
         <!-- White Content Box -->
         <VBox styleClass="content-box" spacing="20" alignment="CENTER">
-            <Label fx:id="welcomeLabel" text="Welcome to the Customer Home Page!" />
+            <Label fx:id="welcomeLabel" text="Welcome to the Customer Profile Page!" />
         </VBox>
     </VBox>
 </AnchorPane>

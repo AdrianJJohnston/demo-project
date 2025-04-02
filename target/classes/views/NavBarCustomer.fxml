@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:controller="org.openjfx.hellofx.controllers.NavigationBarController" alignment="CENTER_LEFT" spacing="20" styleClass="nav-bar">
+    <!-- Logo -->
+    <!-- <ImageView fx:id="logoImage" fitHeight="40" fitWidth="40" /> -->
+
+    <!-- Links (they will be dynamically added or removed based on user role) -->
+    <HBox fx:id="navLinks" spacing="20" alignment="CENTER_RIGHT">
+        <!-- Links will be added dynamically by the controller -->
+    </HBox>
+</HBox>

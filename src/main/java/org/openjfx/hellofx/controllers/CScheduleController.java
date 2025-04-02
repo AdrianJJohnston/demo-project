@@ -3,9 +3,7 @@ package org.openjfx.hellofx.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-
-public class HomeController {
-
+public class CScheduleController {
     @FXML private Label welcomeLabel;
     @FXML private Label homeLink;
     @FXML private Label scheduleLink;
@@ -14,7 +12,7 @@ public class HomeController {
     @FXML
     public void initialize() {
         // Set the welcome text
-        welcomeLabel.setText("Welcome to the Customer Home Page!");
+        welcomeLabel.setText("Welcome to the Customer Schedule Page!");
 
         // Set navigation actions to switch scenes using SceneManager
         homeLink.setOnMouseClicked(event -> SceneManager.switchScene("home.fxml", "Home"));
