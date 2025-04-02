@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.openjfx.hellofx.models.DatabaseUtil;
 import org.openjfx.hellofx.models.RideSchedule;
+import javafx.scene.control.Label;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -38,6 +39,13 @@ public class AdminHomeController {
 
     private ObservableList<RideSchedule> rideList = FXCollections.observableArrayList();
 
+    @FXML private Label welcomeLabel;
+    @FXML private Label adminHomeLink;
+    @FXML private Label fleetMLink;
+    @FXML private Label userMLink;
+    @FXML private Label reportLink;
+    @FXML private Label profileLink;
+
   @FXML
   private void goToUserManagement() {
       System.out.println("Navigating to User Management now...");
@@ -58,6 +66,12 @@ public class AdminHomeController {
 
     @FXML
     public void initialize() {
+        //Navigation bar
+        adminHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("Adminhome.fxml", "Home"));
+        fleetMLink.setOnMouseClicked(event -> SceneManager.switchScene("fleet_management.fxml", "Fleet Management"));
+        userMLink.setOnMouseClicked(event -> SceneManager.switchScene("UserManagement.fxml", "User Management"));
+        reportLink.setOnMouseClicked(event -> SceneManager.switchScene("ReportView.fxml", "Reports"));
+        profileLink.setOnMouseClicked(event -> SceneManager.switchScene("CProfile.fxml", "Profile"));
         // Link columns with model attributes
         rideIdColumn.setCellValueFactory(new PropertyValueFactory<>("rideId"));
         pickupColumn.setCellValueFactory(new PropertyValueFactory<>("pickupLocation"));
@@ -84,3 +98,4 @@ public class AdminHomeController {
 
 
 }
+
