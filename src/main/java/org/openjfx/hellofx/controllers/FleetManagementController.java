@@ -9,6 +9,7 @@ import org.openjfx.hellofx.models.DatabaseUtil;
 import org.openjfx.hellofx.models.Vehicle;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import javafx.scene.control.Label;
 
 import java.util.List;
 
@@ -39,6 +40,13 @@ public class FleetManagementController {
     @FXML
     private Button deleteVehicleButton;
 
+    @FXML private Label welcomeLabel;
+    @FXML private Label adminHomeLink;
+    @FXML private Label fleetMLink;
+    @FXML private Label userMLink;
+    @FXML private Label reportLink;
+    @FXML private Label profileLink;
+
     @FXML
     private void handleBack() {
         SceneManager.loadAdminHome();
@@ -49,6 +57,14 @@ public class FleetManagementController {
 
     @FXML
     public void initialize() {
+        //Navigation bar
+        adminHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("Adminhome.fxml", "Home"));
+        fleetMLink.setOnMouseClicked(event -> SceneManager.switchScene("fleet_management.fxml", "Fleet Management"));
+        userMLink.setOnMouseClicked(event -> SceneManager.switchScene("UserManagement.fxml", "User Management"));
+        reportLink.setOnMouseClicked(event -> SceneManager.switchScene("ReportView.fxml", "Reports"));
+        profileLink.setOnMouseClicked(event -> SceneManager.switchScene("CProfile.fxml", "Profile"));
+
+        //Content
         setupTableColumns();
         loadVehiclesFromDatabase();
 

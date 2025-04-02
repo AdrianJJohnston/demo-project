@@ -43,6 +43,14 @@ public class UserManagementController {
     private Button addUserButton;
     @FXML
     private Button deleteUserButton;
+    @FXML private Label welcomeLabel;
+    //Navigation bar
+    @FXML private Label adminHomeLink;
+    @FXML private Label fleetMLink;
+    @FXML private Label userMLink;
+    @FXML private Label reportLink;
+    @FXML private Label profileLink;
+    //end of Navigation bar
 
     private ObservableList<User> userList = FXCollections.observableArrayList();
 
@@ -64,6 +72,14 @@ public class UserManagementController {
 
     @FXML
     public void initialize() {
+        //Navigation bar
+        adminHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("Adminhome.fxml", "Home"));
+        fleetMLink.setOnMouseClicked(event -> SceneManager.switchScene("fleet_management.fxml", "Fleet Management"));
+        userMLink.setOnMouseClicked(event -> SceneManager.switchScene("UserManagement.fxml", "User Management"));
+        reportLink.setOnMouseClicked(event -> SceneManager.switchScene("ReportView.fxml", "Reports"));
+        profileLink.setOnMouseClicked(event -> SceneManager.switchScene("CProfile.fxml", "Profile"));
+        //End of Nav bar
+        
         try {
             System.out.println("Initializing UserManagementController...");
 

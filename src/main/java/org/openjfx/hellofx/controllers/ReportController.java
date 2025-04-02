@@ -20,6 +20,12 @@ public class ReportController {
     private Button generateReportButton;
     @FXML
     private TextArea reportTextArea;
+    @FXML private Label welcomeLabel;
+    @FXML private Label adminHomeLink;
+    @FXML private Label fleetMLink;
+    @FXML private Label userMLink;
+    @FXML private Label reportLink;
+    @FXML private Label profileLink;
     @FXML
     private void handleBack() {
         SceneManager.loadAdminHome(); // This will navigate back to Admin Home
@@ -28,6 +34,12 @@ public class ReportController {
 
     @FXML
     public void initialize() {
+        //Navigation bar
+        adminHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("Adminhome.fxml", "Home"));
+        fleetMLink.setOnMouseClicked(event -> SceneManager.switchScene("fleet_management.fxml", "Fleet Management"));
+        userMLink.setOnMouseClicked(event -> SceneManager.switchScene("UserManagement.fxml", "User Management"));
+        reportLink.setOnMouseClicked(event -> SceneManager.switchScene("ReportView.fxml", "Reports"));
+        profileLink.setOnMouseClicked(event -> SceneManager.switchScene("CProfile.fxml", "Profile"));
         // Populate date filters with example values
         List<String> dates = Arrays.asList("Last Week", "Last Month", "Last 3 Months", "Last 6 Months", "Last Year");
         startDateCombo.getItems().addAll(dates);
