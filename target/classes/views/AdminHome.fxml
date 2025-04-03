@@ -7,10 +7,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-
 <?import javafx.scene.control.Button?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21"
@@ -18,13 +16,10 @@
             fx:controller="org.openjfx.hellofx.controllers.AdminHomeController"
             stylesheets="@../application.css">
 
-    <!-- Include Navigation Bar for Customer -->
+    <!-- Navigation Bar -->
     <HBox spacing="20" styleClass="nav-bar"
-      AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-
-        <!-- Pushes the nav links to the right -->
+          AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <Region HBox.hgrow="ALWAYS" />
-
         <HBox fx:id="navLinks" spacing="20" alignment="CENTER_RIGHT">
             <Label fx:id="adminHomeLink" text="Home" styleClass="nav-link"/>
             <Label fx:id="fleetMLink" text="Fleet Management" styleClass="nav-link"/>
@@ -34,38 +29,46 @@
         </HBox>
     </HBox>
 
-    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="50" 
-          AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
+    <!-- Main Content -->
+    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="55" AnchorPane.bottomAnchor="48"
+          AnchorPane.leftAnchor="48" AnchorPane.rightAnchor="48">
 
-        <VBox styleClass="content-box" spacing="20" alignment="CENTER">  
-            <TableView fx:id="rideTable">
-                <columns>
-                    <TableColumn fx:id="rideIdColumn" text="Ride ID"/>
-                    <TableColumn fx:id="pickupColumn" text="Pickup Location"/>
-                    <TableColumn fx:id="dropoffColumn" text="Dropoff Location"/>
-                    <TableColumn fx:id="pickupTimeColumn" text="Pickup Time"/>
-                    <TableColumn fx:id="dropoffTimeColumn" text="Dropoff Time"/>
-                    <TableColumn fx:id="statusColumn" text="Status"/>
-                </columns>
-            </TableView>
-        </VBox>
+        <Label text="Ride Schedule" styleClass="section-title"
+               alignment="CENTER"
+               maxWidth="Infinity"/>
 
+
+        <TableView fx:id="rideTable" styleClass="styled-table">
+            <columns>
+                <TableColumn fx:id="rideIdColumn" text="Ride ID" prefWidth="100"/>
+                <TableColumn fx:id="pickupColumn" text="Pickup Location" prefWidth="150"/>
+                <TableColumn fx:id="dropoffColumn" text="Dropoff Location" prefWidth="150"/>
+                <TableColumn fx:id="pickupTimeColumn" text="Pickup Time" prefWidth="120"/>
+                <TableColumn fx:id="dropoffTimeColumn" text="Dropoff Time" prefWidth="120"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Manage Section -->
+        <HBox alignment="CENTER" spacing="30">
+            <HBox spacing="20" alignment="CENTER">
+                <Button fx:id="manageUsersButton" text="Manage Users" styleClass="action-button"/>
+                <Button fx:id="manageFleetButton" text="Manage Fleet" styleClass="action-button"/>
+                <Button fx:id="viewReportsButton" text="View Reports" styleClass="action-button"/>
+            </HBox>
+
+        </HBox>
     </VBox>
-    <!--TOP LEFT CORNER SYLING-->
-    <!-- Large Dark Orange Triangle (background) -->
-    <Pane styleClass="triangle-large-top-left" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
-    <!-- Smaller Lighter Orange Triangle (foreground, placed on top) -->
-    <Pane styleClass="triangle-small-top-left" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
 
-    <!--BOTTOM RIGHT CORNER STYLING-->
-    <!-- Large Dark Orange Triangle (background) -->
+    <!-- Decorative Triangles (Design Elements) -->
+    <Pane styleClass="triangle-large-top-left" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
+    <Pane styleClass="triangle-small-top-left" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
     <Pane styleClass="triangle-large" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0"/>
-    <!-- Smaller Lighter Orange Triangle (foreground, placed on top) -->
     <Pane styleClass="triangle-small" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0"/>
 
-    <!-- Taxi Image in the Top Left Corner -->
+    <!-- Logo and Title -->
     <HBox spacing="190" alignment="CENTER_LEFT"
-        AnchorPane.topAnchor="-15" AnchorPane.leftAnchor="15">
+          AnchorPane.topAnchor="-15" AnchorPane.leftAnchor="15">
         <ImageView fx:id="logoImage" fitWidth="100" fitHeight="100" />
         <Label text="BOOKING SYSTEM" styleClass="title-text"/>
     </HBox>
