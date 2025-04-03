@@ -10,6 +10,8 @@ import org.openjfx.hellofx.models.Vehicle;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.List;
 
@@ -46,6 +48,7 @@ public class FleetManagementController {
     @FXML private Label userMLink;
     @FXML private Label reportLink;
     @FXML private Label profileLink;
+    @FXML private ImageView logoImage;
 
     @FXML
     private void handleBack() {
@@ -57,6 +60,7 @@ public class FleetManagementController {
 
     @FXML
     public void initialize() {
+        logoImage.setImage(new Image(getClass().getResource("/images/taxi.png").toExternalForm()));
         //Navigation bar
         adminHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("Adminhome.fxml", "Home"));
         fleetMLink.setOnMouseClicked(event -> SceneManager.switchScene("fleet_management.fxml", "Fleet Management"));

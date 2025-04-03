@@ -9,6 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.openjfx.hellofx.models.DatabaseUtil;
 import org.openjfx.hellofx.models.RideSchedule;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -45,6 +47,7 @@ public class AdminHomeController {
     @FXML private Label userMLink;
     @FXML private Label reportLink;
     @FXML private Label profileLink;
+    @FXML private ImageView logoImage;
 
   @FXML
   private void goToUserManagement() {
@@ -66,6 +69,7 @@ public class AdminHomeController {
 
     @FXML
     public void initialize() {
+        logoImage.setImage(new Image(getClass().getResource("/images/taxi.png").toExternalForm()));
         //Navigation bar
         adminHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("Adminhome.fxml", "Home"));
         fleetMLink.setOnMouseClicked(event -> SceneManager.switchScene("fleet_management.fxml", "Fleet Management"));

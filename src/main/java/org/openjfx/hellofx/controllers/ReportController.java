@@ -5,6 +5,8 @@ import javafx.scene.control.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class ReportController {
 
@@ -21,6 +23,7 @@ public class ReportController {
     @FXML
     private TextArea reportTextArea;
     @FXML private Label welcomeLabel;
+    @FXML private ImageView logoImage;
     @FXML private Label adminHomeLink;
     @FXML private Label fleetMLink;
     @FXML private Label userMLink;
@@ -34,6 +37,7 @@ public class ReportController {
 
     @FXML
     public void initialize() {
+        logoImage.setImage(new Image(getClass().getResource("/images/taxi.png").toExternalForm()));
         //Navigation bar
         adminHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("Adminhome.fxml", "Home"));
         fleetMLink.setOnMouseClicked(event -> SceneManager.switchScene("fleet_management.fxml", "Fleet Management"));

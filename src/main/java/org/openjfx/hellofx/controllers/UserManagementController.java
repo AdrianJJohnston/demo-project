@@ -10,6 +10,8 @@ import org.openjfx.hellofx.models.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import java.util.List;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UserManagementController {
 
@@ -50,6 +52,7 @@ public class UserManagementController {
     @FXML private Label userMLink;
     @FXML private Label reportLink;
     @FXML private Label profileLink;
+    @FXML private ImageView logoImage;
     //end of Navigation bar
 
     private ObservableList<User> userList = FXCollections.observableArrayList();
@@ -72,6 +75,7 @@ public class UserManagementController {
 
     @FXML
     public void initialize() {
+        logoImage.setImage(new Image(getClass().getResource("/images/taxi.png").toExternalForm()));
         //Navigation bar
         adminHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("Adminhome.fxml", "Home"));
         fleetMLink.setOnMouseClicked(event -> SceneManager.switchScene("fleet_management.fxml", "Fleet Management"));

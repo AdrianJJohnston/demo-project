@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import org.mindrot.jbcrypt.BCrypt;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class RegisterController {
     @FXML private TextField firstNameField;
@@ -18,9 +20,11 @@ public class RegisterController {
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
     @FXML private TextField phoneNumberField;
+    @FXML private ImageView logoImage;
 
     @FXML
     public void initialize() {
+        logoImage.setImage(new Image(getClass().getResource("/images/taxi.png").toExternalForm()));
         // Restrict phone number field to only accept numbers
         phoneNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
