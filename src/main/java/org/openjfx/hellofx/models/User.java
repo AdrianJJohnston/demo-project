@@ -65,4 +65,15 @@ public class User {
 
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
+
+    public Driver getDriver(EntityManager em) {
+        try {
+            // Query the Driver table by userID
+            Query query = em.createQuery("SELECT d FROM Driver d WHERE d.user.userID = :userID", Driver.class);
+            query.setParameter("userID", this.userID);
+            return (Driver) query.getSingleResult(); // Assuming one-to-one mapping
+        } catch (Exception e) {
+            return null; // Return null if no Driver is found or an error occurs
+        }
+    }
 }

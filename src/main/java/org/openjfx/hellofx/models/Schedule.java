@@ -37,6 +37,6 @@ public class Schedule {
     public LocalTime getEndTime() { return endTime; }
     public void setEndTime(LocalTime endTime) { this.endTime = endTime; }
 
-    public String getAvailabilityStatus() { return availabilityStatus; }
-    public void setAvailabilityStatus(String availabilityStatus) { this.availabilityStatus = availabilityStatus; }
+    public String getStatus() { return availabilityStatus; }
+    public void setStatus(String availabilityStatus) { this.availabilityStatus = availabilityStatus; }
 }
