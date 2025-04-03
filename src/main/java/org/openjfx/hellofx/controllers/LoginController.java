@@ -2,7 +2,8 @@ package org.openjfx.hellofx.controllers;
 
 import org.openjfx.hellofx.models.DatabaseUtil;
 import org.openjfx.hellofx.models.User;
-import org.mindrot.jbcrypt.BCrypt;  // Import BCrypt
+import org.openjfx.hellofx.utils.Session;  // Import Session class
+import org.mindrot.jbcrypt.BCrypt;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
@@ -42,9 +43,13 @@ public class LoginController {
 
             // Compare entered password with the hashed password stored in the database
             if (BCrypt.checkpw(password, user.getPasswordHash())) {
-                // Password is correct, proceed with login
-                String role = user.getRole();
-                switch (role.toLowerCase()) {
+                // Store user information in session
+                Session.setLoggedInUser(user.getEmail());
+                Session.setUserRole(user.getRole());
+
+                // Redirect based on role
+                String role = user.getRole().toLowerCase();
+                switch (role) {
                     case "admin":
                         SceneManager.switchScene("AdminHome.fxml", "Admin Home");
                         break;
@@ -57,11 +62,9 @@ public class LoginController {
                         break;
                 }
             } else {
-                // Password doesn't match
                 errorLabel.setText("Invalid email or password.");
             }
         } catch (NoResultException e) {
-            // No user found with that email
             errorLabel.setText("Invalid email or password.");
         } finally {
             em.close();
