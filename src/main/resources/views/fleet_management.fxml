@@ -35,6 +35,7 @@
           AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
 
         <VBox styleClass="content-box" spacing="20" alignment="CENTER">
+            <Label text="Fleet Management" styleClass="section-title"/>
             <!-- TableView to Display Vehicles -->
             <TableView fx:id="vehicleTable">
                 <columns>
