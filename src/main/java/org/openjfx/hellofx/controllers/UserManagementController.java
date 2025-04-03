@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.openjfx.hellofx.models.DatabaseUtil;
 import org.openjfx.hellofx.models.User;
+import org.openjfx.hellofx.models.Driver;
+import org.openjfx.hellofx.models.Vehicle;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import java.util.List;
@@ -46,32 +48,22 @@ public class UserManagementController {
     @FXML
     private Button deleteUserButton;
     @FXML private Label welcomeLabel;
-    //Navigation bar
+    @FXML private ImageView logoImage;
+
+    //Nav Bar
     @FXML private Label adminHomeLink;
     @FXML private Label fleetMLink;
     @FXML private Label userMLink;
     @FXML private Label reportLink;
     @FXML private Label profileLink;
-    @FXML private ImageView logoImage;
-    //end of Navigation bar
+
+    // New fields for drivers
+    @FXML
+    private TextField licenseNumberField; // License input
+    @FXML
+    private ComboBox<String> vehicleComboBox; // Available vehicles dropdown
 
     private ObservableList<User> userList = FXCollections.observableArrayList();
-
-    @FXML
-    private void handleAddUser() {
-        addUser();
-    }
-
-    @FXML
-    private void handleDeleteUser() {
-        deleteUser();
-    }
-
-    @FXML
-    private void handleBack() {
-        SceneManager.loadAdminHome();
-    }
-
 
     @FXML
     public void initialize() {
@@ -82,36 +74,17 @@ public class UserManagementController {
         userMLink.setOnMouseClicked(event -> SceneManager.switchScene("UserManagement.fxml", "User Management"));
         reportLink.setOnMouseClicked(event -> SceneManager.switchScene("ReportView.fxml", "Reports"));
         profileLink.setOnMouseClicked(event -> SceneManager.switchScene("CProfile.fxml", "Profile"));
-        //End of Nav bar
         
-        try {
-            System.out.println("Initializing UserManagementController...");
-
-            setupTableColumns();
-            loadUsersFromDatabase();
-
-            if (roleComboBox != null) {
-                roleComboBox.setItems(FXCollections.observableArrayList("Customer", "Driver", "Admin"));
-            } else {
-                System.err.println("Error: roleComboBox is null. Check FXML file.");
-            }
-
-            if (addUserButton != null) {
-                addUserButton.setOnAction(event -> addUser());
-            } else {
-                System.err.println("Error: addUserButton is null. Check FXML file.");
-            }
-
-            if (deleteUserButton != null) {
-                deleteUserButton.setOnAction(event -> deleteUser());
-            } else {
-                System.err.println("Error: deleteUserButton is null. Check FXML file.");
-            }
-
-        } catch (Exception e) {
-            System.err.println("Error initializing UserManagementController: " + e.getMessage());
-            e.printStackTrace();
-        }
+        setupTableColumns();
+        loadUsersFromDatabase();
+        
+        roleComboBox.setItems(FXCollections.observableArrayList("Customer", "Driver", "Admin"));
+        roleComboBox.setOnAction(event -> toggleDriverFields()); // Show/hide driver fields
+        
+        addUserButton.setOnAction(event -> addUser());
+        deleteUserButton.setOnAction(event -> deleteUser());
+        
+        loadAvailableVehicles(); // Load vehicles into dropdown
     }
 
     private void setupTableColumns() {
@@ -121,7 +94,7 @@ public class UserManagementController {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
-
+        
         userTable.setItems(userList);
     }
 
@@ -132,11 +105,26 @@ public class UserManagementController {
             Query query = em.createQuery("SELECT u FROM User u", User.class);
             List<User> users = query.getResultList();
             userList.addAll(users);
-        } catch (Exception e) {
-            System.err.println("Error loading users from database: " + e.getMessage());
         } finally {
             em.close();
         }
+    }
+
+    private void loadAvailableVehicles() {
+        EntityManager em = DatabaseUtil.getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT v.plateNumber FROM Vehicle v WHERE v.status = 'Available'");
+            List<String> availableVehicles = query.getResultList();
+            vehicleComboBox.setItems(FXCollections.observableArrayList(availableVehicles));
+        } finally {
+            em.close();
+        }
+    }
+
+    private void toggleDriverFields() {
+        boolean isDriver = "Driver".equals(roleComboBox.getValue());
+        licenseNumberField.setDisable(!isDriver);
+        vehicleComboBox.setDisable(!isDriver);
     }
 
     private void addUser() {
@@ -158,12 +146,37 @@ public class UserManagementController {
             User newUser = new User(firstName, lastName, email, password, phoneNumber);
             newUser.setRole(role);
             em.persist(newUser);
-            em.getTransaction().commit();
+            em.flush(); // Ensure user ID is generated
 
+            if ("Driver".equals(role)) {
+                String licenseNumber = licenseNumberField.getText();
+                String selectedVehicle = vehicleComboBox.getValue();
+
+                if (licenseNumber.isEmpty() || selectedVehicle == null) {
+                    showAlert("Error", "License number and vehicle must be provided for drivers!", Alert.AlertType.ERROR);
+                    return;
+                }
+
+                // Fetch the actual Vehicle entity instead of just its ID
+                Query vehicleQuery = em.createQuery("SELECT v FROM Vehicle v WHERE v.plateNumber = :plate");
+                vehicleQuery.setParameter("plate", selectedVehicle);
+                Vehicle assignedVehicle = (Vehicle) vehicleQuery.getSingleResult(); // Get the Vehicle entity
+
+                Driver newDriver = new Driver();
+                newDriver.setUserID(newUser);  // Correct: Assigning User object, not Long
+                newDriver.setLicenseNumber(licenseNumber);
+                newDriver.setVehicleID(assignedVehicle);  // Correct: Assigning Vehicle object, not Long
+                em.persist(newDriver);
+
+                // Update vehicle status
+                em.createQuery("UPDATE Vehicle v SET v.status = 'In Use' WHERE v.vehicleID = :id")
+                    .setParameter("id", assignedVehicle.getVehicleID())
+                    .executeUpdate();
+            }
+
+            em.getTransaction().commit();
             userList.add(newUser);
             clearFields();
-        } catch (Exception e) {
-            showAlert("Error", "Could not add user: " + e.getMessage(), Alert.AlertType.ERROR);
         } finally {
             em.close();
         }
@@ -185,8 +198,6 @@ public class UserManagementController {
                 em.getTransaction().commit();
                 userList.remove(selectedUser);
             }
-        } catch (Exception e) {
-            showAlert("Error", "Could not delete user: " + e.getMessage(), Alert.AlertType.ERROR);
         } finally {
             em.close();
         }
@@ -207,6 +218,7 @@ public class UserManagementController {
         passwordField.clear();
         phoneNumberField.clear();
         roleComboBox.getSelectionModel().clearSelection();
+        licenseNumberField.clear();
+        vehicleComboBox.getSelectionModel().clearSelection();
     }
-
 }

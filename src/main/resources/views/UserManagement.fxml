@@ -67,10 +67,13 @@
                 </items>
             </ComboBox>
 
-            <Button fx:id="addUserButton" text="Add User" onAction="#handleAddUser"/>
-            <Button fx:id="deleteUserButton" text="Delete User" onAction="#handleDeleteUser"/>
+            <!-- Driver-specific fields -->
+            <TextField fx:id="licenseNumberField" promptText="License Number" disable="true"/>
+            <ComboBox fx:id="vehicleComboBox" disable="true"/>
 
-            <Button text="Back to Admin Home" onAction="#handleBack" style="-fx-background-color: #FF5733; -fx-text-fill: white;"/>
+            <Button fx:id="addUserButton" text="Add User"/>
+            <Button fx:id="deleteUserButton" text="Delete User"/>
+
         </VBox>
     </VBox>
     <!--TOP LEFT CORNER SYLING-->
