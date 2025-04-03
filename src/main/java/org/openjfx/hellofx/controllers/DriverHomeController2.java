@@ -19,7 +19,7 @@ public class DriverHomeController2 {
     public void initialize() {
         logoImage.setImage(new Image(getClass().getResource("/images/taxi.png").toExternalForm()));
         // Set the welcome text
-        welcomeLabel.setText("Welcome to the Driver Home Page!");
+        welcomeLabel.setText("Update Your Current Ride Status");
 
         // Set navigation actions to switch scenes using SceneManager
         driverHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("DriverHome.fxml", "Home"));

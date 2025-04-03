@@ -3,6 +3,7 @@ package org.openjfx.hellofx.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -11,7 +12,6 @@ import org.openjfx.hellofx.models.RideSchedule;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import java.util.List;
@@ -49,16 +49,21 @@ public class AdminHomeController {
     @FXML private Label profileLink;
     @FXML private ImageView logoImage;
 
-  @FXML
-  private void goToUserManagement() {
-      System.out.println("Navigating to User Management now...");
-      SceneManager.switchScene("UserManagement.fxml", "User Management");
-  }
+
+    @FXML private Button manageUsersButton;
+    @FXML private Button manageFleetButton;
+    @FXML private Button viewReportsButton;
+
+    @FXML
+    private void goToUserManagement() {
+        System.out.println("Navigating to User Management...");
+        SceneManager.switchScene("UserManagement.fxml", "User Management");
+    }
 
     @FXML
     private void openFleetManagement() {
-        System.out.println("Navigating to Fleet Management now...");
-        SceneManager.switchToFleetManagement();
+        System.out.println("Navigating to Fleet Management...");
+        SceneManager.switchScene("fleet_management.fxml", "Fleet Management");
     }
 
     @FXML
@@ -70,6 +75,11 @@ public class AdminHomeController {
     @FXML
     public void initialize() {
         logoImage.setImage(new Image(getClass().getResource("/images/taxi.png").toExternalForm()));
+        //  buttons work when clicked
+        manageUsersButton.setOnAction(event -> goToUserManagement());
+        manageFleetButton.setOnAction(event -> openFleetManagement());
+        viewReportsButton.setOnAction(event -> handleReportPage());
+
         //Navigation bar
         adminHomeLink.setOnMouseClicked(event -> SceneManager.switchScene("Adminhome.fxml", "Home"));
         fleetMLink.setOnMouseClicked(event -> SceneManager.switchScene("fleet_management.fxml", "Fleet Management"));

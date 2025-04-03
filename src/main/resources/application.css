@@ -112,3 +112,9 @@
     -fx-font-family: "Segoe UI", "Roboto", "Montserrat", "Arial";
     -fx-text-transform: uppercase;
 }
+.section-title {
+    -fx-font-size: 28px;  /* Bigger font */
+    -fx-font-weight: bold; /* Make it bold */
+    -fx-text-fill: #333;  /* Darker text */
+    -fx-padding: 10px 0; /* Add spacing */
+}

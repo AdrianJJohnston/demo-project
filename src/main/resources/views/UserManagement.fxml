@@ -38,7 +38,7 @@
           AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
 
         <VBox styleClass="content-box" spacing="20" alignment="CENTER">
-            <Label text="User Management"/>
+            <Label text="User Management" styleClass="section-title"/>
 
             <TableView fx:id="userTable">
                 <columns>
