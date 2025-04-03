@@ -9,6 +9,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -35,8 +37,25 @@
         <!-- White Content Box -->
         <VBox styleClass="content-box" spacing="20" alignment="CENTER">
             <Label fx:id="welcomeLabel" text="Welcome to the Driver Schedule Page!" />
+            <Label text="Ride Schedule" styleClass="section-title"
+               alignment="CENTER"
+               maxWidth="Infinity"/>
+
+
+	        <TableView fx:id="rideTable" styleClass="styled-table">
+	            <columns>
+	                <TableColumn fx:id="rideIdColumn" text="Ride ID" prefWidth="100"/>
+	                <TableColumn fx:id="pickupColumn" text="Pickup Location" prefWidth="150"/>
+	                <TableColumn fx:id="dropoffColumn" text="Dropoff Location" prefWidth="150"/>
+	                <TableColumn fx:id="pickupTimeColumn" text="Pickup Time" prefWidth="120"/>
+	                <TableColumn fx:id="dropoffTimeColumn" text="Dropoff Time" prefWidth="120"/>
+	                <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+	            </columns>
+	        </TableView>
+	        
         </VBox>
     </VBox>
+    
     <!--TOP LEFT CORNER SYLING-->
     <!-- Large Dark Orange Triangle (background) -->
     <Pane styleClass="triangle-large-top-left" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"/>
