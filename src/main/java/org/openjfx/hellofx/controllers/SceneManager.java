@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import javafx.geometry.Rectangle2D;
 
+import org.openjfx.hellofx.models.User;
 
 import java.io.IOException;
 
@@ -29,6 +30,7 @@ public class SceneManager {
 
     private static boolean isFirstRun = true; // Tracks if this is the first time running the app
 
+    private static User currentUser;
 
     // Preferences to store window size
 
@@ -149,5 +151,11 @@ public class SceneManager {
         switchScene("AdminHome.fxml", "Admin Dashboard");
     }
 
-}
+    public static void setCurrentUser(User user) {
+        currentUser = user;
+    }
 
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+}
