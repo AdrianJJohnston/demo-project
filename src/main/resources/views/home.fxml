@@ -9,6 +9,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -34,9 +37,20 @@
     <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="50" 
           AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
         <!-- White Content Box -->
-        
         <VBox styleClass="content-box" spacing="20" alignment="CENTER">
-            <Label fx:id="welcomeLabel" text="Welcome to the Customer Home Page!" />
+            <Label fx:id="welcomeLabel" text="Welcome to the Customer Home Page!" styleClass="title-label"/>
+
+            <!-- Ride Booking Form -->
+            <VBox spacing="10" alignment="CENTER">
+                <Label text="Book a Ride" />
+                <DatePicker fx:id="rideDatePicker" promptText="Pick a Date"/>
+                <TextField fx:id="pickupLocationField" promptText="Enter Pickup Location"/>
+                <TextField fx:id="dropoffLocationField" promptText="Enter Dropoff Location"/>
+                <TextField fx:id="pickupTimeField" promptText="Enter Pickup Time (HH:mm)"/>
+                <TextField fx:id="capacityNeededField" promptText="Enter Capacity Needed"/>
+                <Button fx:id="bookRideButton" text="Book Ride" />
+                <Label fx:id="messageLabel" text="" styleClass="message-label" />
+            </VBox>
         </VBox>
     </VBox>
 
