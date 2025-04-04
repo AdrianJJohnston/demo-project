@@ -43,6 +43,7 @@ public class LoginController {
 
             // Compare entered password with the hashed password stored in the database
             if (BCrypt.checkpw(password, user.getPasswordHash())) {
+                SceneManager.setCurrentUser(user);
                 // Store user information in session
                 Session.setLoggedInUser(user.getEmail());
                 Session.setUserRole(user.getRole());
